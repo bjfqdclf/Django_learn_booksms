@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>编辑书籍</title>
+{% endblock title %}
+
+{% block head %}
+    <li><a href="/books/">查看书籍</a></li>
+    <li><a href="/books/{{ book_obj.id }}/change">编辑「{{ book_obj.title|truncatechars:6 }}」</a></li>
+{% endblock head %}
+
+{% block body %}
+    {{ block.super }}
+
+    <form action="" method="post">
+        {% csrf_token %}
+        <div>
+            <label for="">书籍名称</label>
+            <input type="text" class="form-control" name="title" value="{{ book_obj.title }}">
+        </div>
+        <div>
+            <label for="">价格</label>
+            <input type="text" class="form-control" name="price" value="{{ book_obj.price }}">
+        </div>
+        <div>
+            <label for="">出版日期</label>
+            <input type="date" class="form-control" name="date" value="{{ book_obj.pub_date|date:'Y-m-d' }}">
+        </div>
+        <div>
+            <label for="">出版社</label>
+            <input type="text" class="form-control" name="publish" value="{{ book_obj.publish }}">
+        </div>
+        <input type="submit" class="btn btn-success pull-right ">
+    </form>
+{% endblock body %}

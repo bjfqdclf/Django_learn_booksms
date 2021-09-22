@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>书籍管理</title>
+{% endblock title %}
+
+{% block head %}
+    <li><a href="/books/">查看书籍</a></li>
+{% endblock head %}
+
+{% block body %}
+    <a href="/addbook/" class="btn bg-primary addbook-btn">添加书籍</a>
+    <table class="table table-striped table-bordered">
+
+        <thead>
+        <tr>
+            <th>书籍名称</th>
+            <th>价格</th>
+            <th>出版日期</th>
+            <th>出版社</th>
+            {#                    <th>删除操作</th>#}
+            <th colspan="2">操作</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        {% for book in book_list %}
+            <tr>
+                <td>{{ book.title }}</td>
+                <td>{{ book.price }}</td>
+                <td>{{ book.pub_date|date:"Y-m-d" }}</td>
+                <td>{{ book.publish }}</td>
+                <td><a href="/books/{{ book.id }}/delete" class="btn btn-danger">删除</a></td>
+                <td><a href="/books/{{ book.id }}/change" class="btn btn-info">编辑</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock body %}
