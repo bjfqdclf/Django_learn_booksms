@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %}
+    <title>添加书籍</title>
+{% endblock title %}
+
+{% block head %}
+    <li><a href="/books">查看书籍</a></li>
+    <li><a href="/book/add">添加书籍</a></li>
+{% endblock head %}
+
+{% block body %}
+    <form action="" method="post">
+    {% csrf_token %}
+        <div class="form-group">
+            <label for="">名称</label>
+            <input type="text" name="title" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="">价格</label>
+            <input type="text" name="price" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="">出版日期</label>
+            <input type="date" name="pub_date" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="">出版社</label>
+            <select name="publish_id" id="" class="form-control">
+                {% for publish in publish_list %}
+                    <option value="{{ publish.pk }}">{{ publish.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="">作者</label>
+            <select name="authors_id_list" multiple class="form-control">
+                {% for author in author_list %}
+                    <option value="{{ author.pk }}">{{ author.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <input type="submit" class="btn btn-default">
+
+    </form>
+{% endblock body %}
+

@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block title %}
+    <title>查看书籍</title>
+{% endblock title %}
+
+{% block head %}
+    <li><a href="/books">查看书籍</a></li>
+{% endblock head %}
+
+{% block return %}
+    <nav aria-label="...">
+        <ul class="pager">
+            <li class="previous"><a href="/book/add"><span aria-hidden=" true"></span>添加书籍</a>
+            </li>
+        </ul>
+    </nav>
+{% endblock return %}
+
+{% block body %}
+    <table class="table table-bordered table-hover table-striped">
+        <thead>
+        <tr>
+            <th>编号</th>
+            <th>书籍名称</th>
+            <th>价格</th>
+            <th>出版日期</th>
+            <th>出版社</th>
+            <th>作者</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for book in book_list %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ book.title }}</td>
+                <td>{{ book.price }}</td>
+                <td>{{ book.pub_date|date:"Y-m-d" }}</td>
+                <td>{{ book.publish.name }}</td>
+                <td>
+                    {% for author in book.authors.all %}
+                        {% if forloop.last %}
+                            <span>{{ author.name }}</span>
+                        {% else %}
+                            <span>{{ author.name }}</span>,
+                        {% endif %}
+                    {% endfor %}
+                </td>
+                <td>
+                    <a href="book/{{ book.pk }}/change" class="btn btn-warning">编辑</a>
+                    <a href="book/{{ book.pk }}/delete" class="btn btn-danger">删除</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock body %}
