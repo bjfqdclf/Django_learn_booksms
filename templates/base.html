@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% block title %}
+        <title>title</title>
+    {% endblock title %}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+          integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+    <style>
+        .container {
+            margin: 100px;
+        }
+
+        .btn {
+            margin-top: 10px;
+        }
+
+        .addbook-btn {
+            margin-bottom: 20px;
+        }
+
+        h3 {
+            margin-left: 20px;
+            margin-top: 10px;
+            font-size: 30px;
+
+            position: relative;
+        }
+
+        .header-bar {
+            margin: 0;
+            width: 100%;
+            height: 60px;
+            background-color: #2aabd2;
+            position: absolute;
+
+        }
+    </style>
+</head>
+<body>
+
+<ol class="breadcrumb">
+    {% block head %}
+        <li><a href="/books">查看书籍</a></li>
+    {% endblock head %}
+</ol>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-3">
+            {% block return %}
+                <nav aria-label="...">
+                    <ul class="pager">
+                        <li class="previous"><a href="/books"><span aria-hidden=" true">&larr;</span> 返回主页</a>
+                        </li>
+                    </ul>
+                </nav>
+            {% endblock return %}
+            {% block body %}
+
+
+            {% endblock body %}
+        </div>
+    </div>
+</div>
+</body>
+</html>
